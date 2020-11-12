@@ -15,6 +15,10 @@ Neighbor QTL is an extended method of single-marker regression.
 Taking conditional genotype probabilities from \code{r/qtl} package, the \code{rNeighborQTL} package performs an interval mapping of neighbor genotypic identity.
 Alternative to QTL mapping, \code{rNeighborGWAS} package is also available for genome-wide association studies (GWAS) via CRAN at \url{https://cran.r-project.org/package=rNeighborGWAS}.
 }
+\note{
+A developer version of rNeighborQTL is available at the GitHub reporsitory (\url{https://github.com/yassato/rNeighborQTL}).
+If the CRAN version is out of work or you want to use the latest methods, you may install the package via GitHub.
+}
 \references{
 \itemize{
 \item Sato Y, Yamamoto E, Shimizu KK, Nagano AJ (2019) Neighbor GWAS: incorporating neighbor genotypic identity into genome-wide association studies of field herbivory on \emph{Arabidopsis thaliana}. bioRxiv \url{https://doi.org/10.1101/845735}

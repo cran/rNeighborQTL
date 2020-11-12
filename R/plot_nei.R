@@ -16,10 +16,24 @@ plot_nei = function(res, type=c("neighbor","self","int"), chr=NULL, th=NULL, ...
   type <- match.arg(type)
 
   if(is.null(chr)==FALSE) {
-    res = res[res$chr==chr,]
+    res <- res[res$chr==chr,]
   }
-
-  x <- c(1:nrow(res))
+  
+  pos <- res$pos
+  chr <- as.factor(res$chr)
+  coord <- 0
+  M <- 0
+  tic <- numeric(nlevels(chr))
+  for (i in 1:nlevels(chr)) {
+    w <- (chr == levels(chr)[i])
+    pos.c <- pos[w]
+    coord[w] <- M + pos.c
+    mx <- max(pos.c)
+    tic[i] <- M + mx/2
+    M <- M + mx + max(pos)*0.2
+  }
+  x <- coord/M
+  tic <- tic/M
 
   switch(type,
          "self" = y <- res$LOD_self,
@@ -44,4 +58,5 @@ plot_nei = function(res, type=c("neighbor","self","int"), chr=NULL, th=NULL, ...
   unobs = grep("_loc", rownames(res))
   graphics::points(x[-unobs], y[-unobs], pch=16, cex=0.75)
   graphics::abline(h=th, col=grDevices::grey(0.5,0.5), lty=2)
+  graphics::axis(side=1, at=tic, labels=levels(chr))
 }
